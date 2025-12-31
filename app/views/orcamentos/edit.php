@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp.css">
+<link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp_moderno.css">
 
 <div class="container">
 
