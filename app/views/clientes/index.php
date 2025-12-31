@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Clientes Ativos</title>
-    <link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp.css">
-</head>
+    <link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp_moderno.css">
+    </head>
 <body>
 
 <div class="container">
