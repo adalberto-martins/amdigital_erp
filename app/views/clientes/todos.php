@@ -3,46 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Todos os Clientes</title>
+    <link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp.css">
 </head>
 <body>
 
-<h2>Todos os Clientes</h2>
+<div class="container">
 
-<a href="?controller=cliente&action=index">Ver somente ativos</a>
-<br><br>
+    <div class="page-header">
+        <h2>Todos os Clientes</h2>
+        <a href="?controller=cliente&action=index" class="btn btn-outline">
+            Ver somente ativos
+        </a>
+    </div>
 
-<table border="1" cellpadding="6">
-    <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Status</th>
-        <th>Ações</th>
-    </tr>
+    <div class="card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
 
-    <?php foreach ($clientes as $c): ?>
-    <tr>
-        <td><?= htmlspecialchars($c['nome']) ?></td>
-        <td><?= htmlspecialchars($c['email']) ?></td>
-        <td>
-            <?= $c['status'] == 1 ? 'Ativo' : 'Inativo' ?>
-        </td>
-        <td>
-            <?php if ($c['status'] == 1): ?>
-                <a href="?controller=cliente&action=edit&id=<?= $c['id'] ?>">Editar</a> |
-                <a href="?controller=cliente&action=delete&id=<?= $c['id'] ?>"
-                   onclick="return confirm('Inativar este cliente?')">
-                   Inativar
-                </a>
+            <?php if (!empty($clientes)): ?>
+                <?php foreach ($clientes as $c): ?>
+                <tr>
+                    <td><?= htmlspecialchars($c['nome']) ?></td>
+                    <td><?= htmlspecialchars($c['email']) ?></td>
+                    <td>
+                        <?php if ($c['status'] == 1): ?>
+                            <span class="badge badge-success">Ativo</span>
+                        <?php else: ?>
+                            <span class="badge badge-danger">Inativo</span>
+                        <?php endif; ?>
+                    </td>
+                    <td class="actions">
+                        <?php if ($c['status'] == 1): ?>
+                            <a href="?controller=cliente&action=edit&id=<?= $c['id'] ?>">
+                                Editar
+                            </a>
+                        <?php else: ?>
+                            <a href="?controller=cliente&action=reativar&id=<?= $c['id'] ?>"
+                               style="color:#16a34a"
+                               onclick="return confirm('Reativar este cliente?')">
+                               Reativar
+                            </a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
             <?php else: ?>
-                <a href="?controller=cliente&action=reativar&id=<?= $c['id'] ?>"
-                   onclick="return confirm('Reativar este cliente?')">
-                   Reativar
-                </a>
+                <tr>
+                    <td colspan="4">Nenhum cliente encontrado.</td>
+                </tr>
             <?php endif; ?>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
 </body>
 </html>
+
