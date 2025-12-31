@@ -2,7 +2,7 @@
 
 function conexao() {
     $host = 'localhost';
-    $db   = 'amdigital';
+    $db   = 'amdigital_erp';
     $user = 'root';
     $pass = '';
     $charset = 'utf8mb4';
