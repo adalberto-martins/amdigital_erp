@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Novo Orçamento</title>
-    <link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp.css">
+    <link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp_moderno.css">
 </head>
 <body>
 
