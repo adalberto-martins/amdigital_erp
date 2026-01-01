@@ -3,36 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Novo Cliente</title>
-    <link rel="stylesheet" href="/amdigital_erp/public/assets/css/erp_moderno.css">
 </head>
 <body>
 
-<div class="container">
+<form method="POST" action="?controller=cliente&action=store">
 
-    <div class="page-header">
-        <h2>Novo Cliente</h2>
-        <a href="?controller=cliente&action=index" class="btn btn-outline">
-            Voltar
-        </a>
-    </div>
+    <label>CPF ou CNPJ</label>
+    <input type="text" name="cpf_cnpj" required>
 
-    <div class="card">
-        <form method="post" action="?controller=cliente&action=store">
+    <label>CEP</label>
+    <input type="text" name="cep" inputmode="numeric" maxlength="9">
 
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text"
-                       id="nome"
-                       name="nome"
-                       placeholder="Nome do cliente"
-                       required>
-            </div>
+    <label>Logradouro</label>
+    <input type="text" name="logradouro" required>
 
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email"
-                       id="email"
-                       name="email"
-                       placeholder="email@exemplo.com">
-            </div>
+    <label>Número</label>
+    <input type="text" name="numero">
+
+    <label>Complemento</label>
+    <input type="text" name="complemento">
+
+    <label>Bairro</label>
+    <input type="text" name="bairro">
+
+    <label>Cidade</label>
+    <input type="text" name="cidade">
+
+    <label>Estado (UF)</label>
+    <select name="uf_id" required>
+        <option value="">Selecione</option>
+        <?php foreach ($ufs as $uf): ?>
+            <option value="<?= $uf['id'] ?>">
+                <?= htmlspecialchars($uf['sigla']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <label>Observações</label>
+    <textarea name="observacoes"></textarea>
+
+    <button type="submit">Salvar</button>
+
+</form>
+
+</body>
+</html>
+
+
 
