@@ -22,6 +22,16 @@
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Telefone</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Cep</th>
+                    <th>Logadoura</th>
+                    <th>Número</th>
+                    <th>Complemento</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Observações</th>
                     <th>Status</th>
                     <th>Ações</th>
                 </tr>
@@ -33,6 +43,17 @@
                 <tr>
                     <td><?= htmlspecialchars($c['nome']) ?></td>
                     <td><?= htmlspecialchars($c['email']) ?></td>
+                    <td><?= htmlspecialchars($c['Telefone']) ?></td>
+                    <td><?= htmlspecialchars($c['cpf / cnpj']) ?></td>
+                    <td><?= htmlspecialchars($c['cep']) ?></td>
+                    <td><?= htmlspecialchars($c['logadoura']) ?></td>
+                    <td><?= htmlspecialchars($c['numero']) ?></td>
+                    <td><?= htmlspecialchars($c['complemento']) ?></td>
+                    <td><?= htmlspecialchars($c['bairro']) ?></td>
+                    <td><?= htmlspecialchars($c['cidade']) ?></td>
+                    <td><?= htmlspecialchars($c['estado']) ?></td>
+                    <th><?= htmlspecialchars($c['observacoes']) ?></th>
+                    <th><?= htmlspecialchars($c['acoes']) ?></th>
                     <td>
                         <?php if ($c['status'] == 1): ?>
                             <span class="badge badge-success">Ativo</span>
