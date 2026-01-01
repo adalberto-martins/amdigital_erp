@@ -1,55 +1,46 @@
 <?php
 
-require_once '../config/database.php';
-require_once '../app/models/ClienteModel.php';
+require_once __DIR__ . '/../../config/database.php';
 
-class ClienteController {
+class ClienteController
+{
+    public function create()
+    {
+        // busca UFs para o formulário
+        global $pdo;
 
-    private $model;
+        $stmt = $pdo->prepare("SELECT id, sigla FROM ufs ORDER BY sigla");
+        $stmt->execute();
+        $ufs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    public function __construct() {
-        $this->model = new ClienteModel(conexao());
+        require_once __DIR__ . '/../views/clientes/create.php';
     }
 
-    // CLIENTES ATIVOS
-    public function index() {
-        $clientes = $this->model->listar();
-        require '../app/views/clientes/index.php';
-    }
+    public function store()
+    {
+        global $pdo;
 
-    // TODOS OS CLIENTES
-    public function todos() {
-        $clientes = $this->model->listarTodos();
-        require '../app/views/clientes/todos.php';
-    }
+        $sql = "INSERT INTO clientes
+            (cpf_cnpj, cep, logradouro, numero, complemento, bairro, cidade, uf_id, observacoes)
+            VALUES
+            (:cpf_cnpj, :cep, :logradouro, :numero, :complemento, :bairro, :cidade, :uf_id, :observacoes)";
 
-    public function create() {
-        require '../app/views/clientes/create.php';
-    }
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':cpf_cnpj'    => $_POST['cpf_cnpj'] ?? null,
+            ':cep'         => $_POST['cep'] ?? null,
+            ':logradouro'  => $_POST['logradouro'] ?? null,
+            ':numero'      => $_POST['numero'] ?? null,
+            ':complemento' => $_POST['complemento'] ?? null,
+            ':bairro'      => $_POST['bairro'] ?? null,
+            ':cidade'      => $_POST['cidade'] ?? null,
+            ':uf_id'       => $_POST['uf_id'] ?? null,
+            ':observacoes' => $_POST['observacoes'] ?? null,
+        ]);
 
-    public function store() {
-        $this->model->salvar($_POST);
-        header('Location: ?controller=cliente&action=index');
-    }
-
-    public function edit() {
-        $cliente = $this->model->buscar($_GET['id']);
-        require '../app/views/clientes/edit.php';
-    }
-
-    public function update() {
-        $this->model->atualizar($_POST['id'], $_POST);
-        header('Location: ?controller=cliente&action=index');
-    }
-
-    public function delete() {
-        $this->model->inativar($_GET['id']);
-        header('Location: ?controller=cliente&action=index');
-    }
-
-    public function reativar() {
-        $this->model->reativar($_GET['id']);
         header('Location: ?controller=cliente&action=todos');
+        exit;
     }
 }
+
 
