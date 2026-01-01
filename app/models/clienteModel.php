@@ -28,13 +28,20 @@ class ClienteModel {
     }
 
     public function salvar($dados) {
-        $sql = "INSERT INTO clientes (nome, cpf, email, status)
+        $sql = "INSERT INTO clientes (nome, cpf, email, cep, logadoura, numero, complemento, bairro, cidade, estado status)
                 VALUES (?,?,?,1)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([
             $dados['nome'],
             $dados['cpf'],
-            $dados['email']
+            $dados['email'],
+            $dados['cep'],
+            $dados['logadoura'],
+            $dados['numero'],
+            $dados['complemento'],
+            $dados['bairro'],
+            $dados['cidade'],
+            $dados['estado']
         ]);
     }
 
